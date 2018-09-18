@@ -21,7 +21,7 @@ The goals / steps of this project are the following:
 The code for this step is contained in the "def def calibrate_camera(...)" of the IPython notebook located in "solution.ipynb". I also need to tell the calibration function that the actual number of corners expected -- calibration will not happen if found coners less than half of the checkboard images
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection. Note that we can safely skipt those image that we cannot find correct number of corners from. I have stored all images with correct number of corners found in the directory "./camera_cal_output". Here is one of such an example output:
-![found chessboard corners][./camera_cal_output/corners_found_in_calibration2.jpg =500x]
+![found chessboard corners](./camera_cal_output/corners_found_in_calibration2.jpg)
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. The main output is camera matrix and undistortion matrix which will be used in the next step.
 
@@ -31,17 +31,17 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 #### 1. Provide an example of a distortion-corrected image.
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![undistorted test img][./output_images/test2.jpg_undist.jpg =500x]
+![undistorted test img](./output_images/test2.jpg_undist.jpg)
 
 #### 2. Use combined gradient and color threshold to detect the candidate lane pixes
 
 I used a combination of gradient, magnitude, directional and color thresholds, to generate a binary image. See the function abs_sobel_thresh(...), dir_threshold(...), mag_thresh(...), color_thresh(...) and eventually the combined_thresh(...) to combine all together.  You can tell how different thresholding mechanism works from the following pictures:
 
-|![sobel_x][./output_images/test2.jpg_sobel_x.jpg =250x] gradient x axis | ![sobel_y][./output_images/test2.jpg_sobel_y.jpg =250x] | gradient y axis |  ![magnitude threshold][./output_images/test2.jpg_sobel_mag.jpg =250x] magnitude |
-|![directional][./output_images/test2.jpg_sobel_directional.jpg =250x] directional gradient| ![combined][./output_images/test2.jpg_sobel_combined.jpg =250x] Combined all gradient related | ![color threshold][./output_images/test2.jpg_color_thresh.jpg =250x] color threshold | 
+|![sobel_x](./output_images/test2.jpg_sobel_x.jpg =250x) gradient x axis | ![sobel_y](./output_images/test2.jpg_sobel_y.jpg =250x) | gradient y axis |  ![magnitude threshold](./output_images/test2.jpg_sobel_mag.jpg =250x) magnitude |
+|![directional](./output_images/test2.jpg_sobel_directional.jpg =250x) directional gradient| ![combined](./output_images/test2.jpg_sobel_combined.jpg =250x) Combined all gradient related | ![color threshold](./output_images/test2.jpg_color_thresh.jpg =250x) color threshold | 
 
 Below picture shows all combined result:
-![combined_with_color][./output_images/test2.jpg_sobel_combined_plus_color_thresh.jpg =500x]
+![combined_with_color](./output_images/test2.jpg_sobel_combined_plus_color_thresh.jpg =500x)
 
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
@@ -49,7 +49,7 @@ Below picture shows all combined result:
 Before proceed with 
 
 The code for my perspective transform includes a function called `get_perspective_transform_matrix()`, which appears in the code cell titiled with "Transform perspective" of the IPython notebook.  The function takes "straightline1" test image. 
-![straightline1][./test_images/straight_lines1.jpg =500x]
+![straightline1](./test_images/straight_lines1.jpg)
 
 I chose the hardcode the source and destination points in the following manner:
 
@@ -60,13 +60,13 @@ dst = np.float32([[1042,5],[1042,719],[262,719],[282,5]])
 
 This function returns two  M, INVM - the former is used to warp normal camera view to a bird-eye view, while the latter is saved to be used later to warp a bird-eye view back to a normal camera view. the perspective transform was working as seen as below image
 
-![warped][./output_images/test2.jpg_warped.jpg]
+![warped](./output_images/test2.jpg_warped.jpg)
 
 #### 4.  Identified lane-line pixels and fit their positions with a polynomial 
 
 As the section 8 in the IPython notebook, I found lane-line pixels by using histogram. The first step we'll take is to split the histogram into two sides, one for each lane line. Then, set up windows and window hyperparameters. Our next step is to set a few hyperparameters related to our sliding windows, and set them up to iterate across the binary activations in the image. Now that we've set up what the windows look like and have a starting point, we'll want to loop for nwindows, with the given window sliding left or right if it finds the mean position of activated pixels within the window to have shifted.
 
-![lane pixel found][./report_images/lane_pixels_detected.jpeg]
+![lane pixel found](./report_images/lane_pixels_detected.jpeg)
 
 Then, as the section 10 in the IPython notebook, we have found all our pixels belonging to each line through the sliding window method, it's time to fit a 2nd order polynomial to the line.  For now, you have noted the complex code in block 9 of the IPython notebook - they will be described in the video processing section.
 
@@ -83,7 +83,7 @@ The Line and Lane class mainly kept the state of the lane finding result and wil
 
 I implemented this step in section 12 of the IPython notebook.  Here is an example of my result on a test image. Please note that the white box is for interest zone experiment I kept in this project. The green zone highlighted is the lane detected.
 
-![Result img][./test_images_output/test2.jpg]
+![Result img](./test_images_output/test2.jpg)
 
 ---
 
