@@ -49,7 +49,7 @@ I used a combination of gradient, magnitude, directional and color thresholds, t
 ![color threshold](./output_images/test2.jpg_color_thresh.jpg) color threshold 
 
 Below picture shows all combined result:
-![combined_with_color](./output_images/test2.jpg_sobel_combined_plus_color_thresh.jpg =500x)
+![combined_with_color](./output_images/test2.jpg_sobel_combined_plus_color_thresh.jpg)
 
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
