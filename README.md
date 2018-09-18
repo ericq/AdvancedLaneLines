@@ -30,15 +30,23 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![undistorted test img](./output_images/test2.jpg_undist.jpg)
+To demonstrate this step, first let's see the original test picture.
+![Original test img](./test_images/test2.jpg) Original 
+
+
+Then, I apply the distortion correction to one of the test images like this one:
+![undistorted test img](./output_images/test2.jpg_undist.jpg) Distortion Corrected
 
 #### 2. Use combined gradient and color threshold to detect the candidate lane pixes
 
 I used a combination of gradient, magnitude, directional and color thresholds, to generate a binary image. See the function abs_sobel_thresh(...), dir_threshold(...), mag_thresh(...), color_thresh(...) and eventually the combined_thresh(...) to combine all together.  You can tell how different thresholding mechanism works from the following pictures:
 
-|![sobel_x](./output_images/test2.jpg_sobel_x.jpg =250x) gradient x axis | ![sobel_y](./output_images/test2.jpg_sobel_y.jpg =250x) | gradient y axis |  ![magnitude threshold](./output_images/test2.jpg_sobel_mag.jpg =250x) magnitude |
-|![directional](./output_images/test2.jpg_sobel_directional.jpg =250x) directional gradient| ![combined](./output_images/test2.jpg_sobel_combined.jpg =250x) Combined all gradient related | ![color threshold](./output_images/test2.jpg_color_thresh.jpg =250x) color threshold | 
+![sobel_x](./output_images/test2.jpg_sobel_x.jpg =250x) gradient x axis  
+![sobel_y](./output_images/test2.jpg_sobel_y.jpg =250x) gradient y axis 
+![magnitude threshold](./output_images/test2.jpg_sobel_mag.jpg =250x) magnitude 
+![directional](./output_images/test2.jpg_sobel_directional.jpg =250x) directional gradient
+![combined](./output_images/test2.jpg_sobel_combined.jpg =250x) Combined all gradient related 
+![color threshold](./output_images/test2.jpg_color_thresh.jpg =250x) color threshold 
 
 Below picture shows all combined result:
 ![combined_with_color](./output_images/test2.jpg_sobel_combined_plus_color_thresh.jpg =500x)
